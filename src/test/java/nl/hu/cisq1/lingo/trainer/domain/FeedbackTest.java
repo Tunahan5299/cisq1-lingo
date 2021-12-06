@@ -15,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("Feedback")
 public class FeedbackTest {
+
     @ParameterizedTest
     @MethodSource("examples")
     @DisplayName("for correct attempt")
@@ -31,8 +32,21 @@ public class FeedbackTest {
                 Arguments.of("BAARD", "BERGEN", List.of(INVALID, INVALID, INVALID, INVALID, INVALID)),
                 Arguments.of("BAARD", "BONJE", List.of(CORRECT, ABSENT, ABSENT, ABSENT, ABSENT)),
                 Arguments.of("BAARD", "BARST", List.of(CORRECT, CORRECT, PRESENT, ABSENT, ABSENT)),
-                Arguments.of("BAARD", "BEDDE", List.of(CORRECT, CORRECT, ABSENT, ABSENT, ABSENT)),
-                Arguments.of("BAARD", "BABYS", List.of(CORRECT, ABSENT, PRESENT, ABSENT, ABSENT))
+                Arguments.of("BAARD", "BEDDE", List.of(CORRECT, ABSENT, PRESENT, ABSENT, ABSENT)),
+                Arguments.of("BAARD", "BABYS", List.of(CORRECT, CORRECT, ABSENT, ABSENT, ABSENT)),
+                Arguments.of("BAARD", "BRAAM", List.of(CORRECT, PRESENT, CORRECT, PRESENT, ABSENT)),
+                Arguments.of("BAARD", "AARDE", List.of(PRESENT, CORRECT, PRESENT, PRESENT, ABSENT))
         );
+    }
+
+    @DisplayName("Give hints")
+    void giveHint() {
+        List<String> previousHint = List.of("B", ".", ".", "R", "D");
+        Feedback feedback = Feedback.generate("BAARD", "WAARD");
+
+        List<String> hint = feedback.giveHint(previousHint);
+
+        List<String> expected = List.of();
+        assertEquals(expected, hint);
     }
 }
