@@ -7,8 +7,6 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static nl.hu.cisq1.lingo.trainer.domain.LetterFeedback.*;
-
 public class Feedback {
     private String wordToGuess;
     private List<LetterFeedback> letterFeedback;
@@ -18,16 +16,16 @@ public class Feedback {
         this.letterFeedback = letterFeedback;
     }
 
-    public Feedback(List<nl.hu.cisq1.lingo.trainer.domain.LetterFeedback> nCopies) {
+    public Feedback(List<LetterFeedback> nCopies) {
     }
 
-    public List<nl.hu.cisq1.lingo.trainer.domain.LetterFeedback> getLetterFeedback() {
+    public List<LetterFeedback> getLetterFeedback() {
         return letterFeedback;
     }
 
     public static Feedback generate(String wordToGuess, String attempt) {
         if (wordToGuess.length() != attempt.length()) {
-            return new Feedback(Collections.nCopies(wordToGuess.length(), INVALID));
+            return new Feedback(Collections.nCopies(wordToGuess.length(), LetterFeedback.INVALID));
         }
 
         List<String> lettersToGuess = Arrays.asList(wordToGuess.split(""));
@@ -39,7 +37,7 @@ public class Feedback {
 
             if (lettersToGuess.get(i).equals(attemptLetter)) {
                 lettersToGuess.set(i, " ");
-                marked.add(CORRECT);
+                marked.add(LetterFeedback.CORRECT);
             } else {
                 marked.add(null);
             }
@@ -48,16 +46,16 @@ public class Feedback {
         for (int i = 0; i < lettersToGuess.size(); i++) {
             String attemptLetter = attemptLetters.get(i);
 
-            if (marked.get(i) == CORRECT) {
+            if (marked.get(i) == LetterFeedback.CORRECT) {
                 continue;
             }
 
             if (lettersToGuess.contains(attemptLetter)) {
                 int index = lettersToGuess.indexOf(attemptLetter);
                 lettersToGuess.set(index, " ");
-                marked.set(i, PRESENT);
+                marked.set(i, LetterFeedback.PRESENT);
             } else {
-                marked.set(i, ABSENT);
+                marked.set(i, LetterFeedback.ABSENT);
             }
         }
 
@@ -73,7 +71,7 @@ public class Feedback {
         List<String> hint = new ArrayList<>(previousHint);
 
         for(int i = 0; i < letterFeedback.size(); i++){
-            if(letterFeedback.get(i) == CORRECT){
+            if(letterFeedback.get(i) == LetterFeedback.CORRECT){
                 hint.set(i, letters[i]);
             } else {
                 hint.set(i, ".");
