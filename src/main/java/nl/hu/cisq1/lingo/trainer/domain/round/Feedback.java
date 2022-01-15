@@ -1,4 +1,4 @@
-package nl.hu.cisq1.lingo.trainer.domain;
+package nl.hu.cisq1.lingo.trainer.domain.round;
 
 import nl.hu.cisq1.lingo.trainer.domain.exception.HintSizeDoesNotMatchException;
 

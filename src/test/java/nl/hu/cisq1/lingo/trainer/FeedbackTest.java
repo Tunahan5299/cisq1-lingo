@@ -1,7 +1,7 @@
 package nl.hu.cisq1.lingo.trainer;
 
-import nl.hu.cisq1.lingo.trainer.domain.Feedback;
-import nl.hu.cisq1.lingo.trainer.domain.LetterFeedback;
+import nl.hu.cisq1.lingo.trainer.domain.round.Feedback;
+import nl.hu.cisq1.lingo.trainer.domain.round.LetterFeedback;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;

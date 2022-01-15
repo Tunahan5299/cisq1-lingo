@@ -1,6 +1,6 @@
-package nl.hu.cisq1.lingo.trainer.domain;
+package nl.hu.cisq1.lingo.trainer.domain.round;
 
-import nl.hu.cisq1.lingo.words.domain.Word;
+import nl.hu.cisq1.lingo.trainer.domain.words.Word;
 
 import java.util.Calendar;
 import java.util.Date;

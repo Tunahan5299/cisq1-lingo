@@ -1,7 +1,7 @@
 package nl.hu.cisq1.lingo.trainer;
 
 import nl.hu.cisq1.lingo.CiTestConfiguration;
-import nl.hu.cisq1.lingo.words.application.WordService;
+import nl.hu.cisq1.lingo.trainer.application.words.WordService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

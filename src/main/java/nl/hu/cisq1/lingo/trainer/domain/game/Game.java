@@ -1,4 +1,6 @@
-package nl.hu.cisq1.lingo.trainer.domain;
+package nl.hu.cisq1.lingo.trainer.domain.game;
+
+import nl.hu.cisq1.lingo.trainer.domain.round.Feedback;
 
 import java.util.List;
 
@@ -6,10 +8,10 @@ public class Game {
     private int Id;
     private List<Feedback> Rounds;
     private Score Result;
-    private GameState GameState;
-    private Player Player;
+    private nl.hu.cisq1.lingo.trainer.domain.game.GameState GameState;
+    private nl.hu.cisq1.lingo.trainer.domain.game.Player Player;
 
-    public Game(int id, List<Feedback> rounds, Score result, nl.hu.cisq1.lingo.trainer.domain.GameState gameState, nl.hu.cisq1.lingo.trainer.domain.Player player) {
+    public Game(int id, List<Feedback> rounds, Score result, nl.hu.cisq1.lingo.trainer.domain.game.GameState gameState, nl.hu.cisq1.lingo.trainer.domain.game.Player player) {
         Id = id;
         Rounds = rounds;
         Result = result;
@@ -29,11 +31,11 @@ public class Game {
         return Result;
     }
 
-    public nl.hu.cisq1.lingo.trainer.domain.GameState getGameState() {
+    public nl.hu.cisq1.lingo.trainer.domain.game.GameState getGameState() {
         return GameState;
     }
 
-    public nl.hu.cisq1.lingo.trainer.domain.Player getPlayer() {
+    public nl.hu.cisq1.lingo.trainer.domain.game.Player getPlayer() {
         return Player;
     }
 
@@ -49,11 +51,11 @@ public class Game {
         Result = result;
     }
 
-    public void setGameState(nl.hu.cisq1.lingo.trainer.domain.GameState gameState) {
+    public void setGameState(nl.hu.cisq1.lingo.trainer.domain.game.GameState gameState) {
         GameState = gameState;
     }
 
-    public void setPlayer(nl.hu.cisq1.lingo.trainer.domain.Player player) {
+    public void setPlayer(nl.hu.cisq1.lingo.trainer.domain.game.Player player) {
         Player = player;
     }
 }
