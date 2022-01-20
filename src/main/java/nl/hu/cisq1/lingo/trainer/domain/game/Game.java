@@ -1,61 +1,47 @@
 package nl.hu.cisq1.lingo.trainer.domain.game;
 
-import nl.hu.cisq1.lingo.trainer.domain.round.Feedback;
+import nl.hu.cisq1.lingo.trainer.domain.round.Round;
+import org.hibernate.annotations.Cascade;
 
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
+import static nl.hu.cisq1.lingo.trainer.domain.game.GameState.INPROGRESS;
+
+@Entity
 public class Game {
-    private int Id;
-    private List<Feedback> Rounds;
-    private Score Result;
-    private nl.hu.cisq1.lingo.trainer.domain.game.GameState GameState;
-    private nl.hu.cisq1.lingo.trainer.domain.game.Player Player;
+    @Id
+    @GeneratedValue
+    private Long id;
 
-    public Game(int id, List<Feedback> rounds, Score result, nl.hu.cisq1.lingo.trainer.domain.game.GameState gameState, nl.hu.cisq1.lingo.trainer.domain.game.Player player) {
-        Id = id;
-        Rounds = rounds;
-        Result = result;
-        GameState = gameState;
-        Player = player;
+    private Integer score = 0;
+
+    public GameState getStatus() {
+        return status;
     }
 
-    public int getId() {
-        return Id;
+    @Enumerated(EnumType.STRING)
+    private GameState status = INPROGRESS;
+
+    @OneToMany(fetch = FetchType.EAGER)
+    @Cascade(org.hibernate.annotations.CascadeType.ALL)
+    private List<Round> rounds = new ArrayList<>();
+
+    public Game() {}
+    public Game(Integer score, GameState status) {
+        this.score = score;
+        this.status = status;
     }
 
-    public List<Feedback> getRounds() {
-        return Rounds;
+    public Game(int i, GameState inprogress, List<Round> roundList) {
     }
 
-    public Score getResult() {
-        return Result;
+    public List<Round> getRounds() {
+        return rounds;
     }
 
-    public nl.hu.cisq1.lingo.trainer.domain.game.GameState getGameState() {
-        return GameState;
-    }
-
-    public nl.hu.cisq1.lingo.trainer.domain.game.Player getPlayer() {
-        return Player;
-    }
-
-    public void setId(int id) {
-        Id = id;
-    }
-
-    public void setRounds(List<Feedback> rounds) {
-        Rounds = rounds;
-    }
-
-    public void setResult(Score result) {
-        Result = result;
-    }
-
-    public void setGameState(nl.hu.cisq1.lingo.trainer.domain.game.GameState gameState) {
-        GameState = gameState;
-    }
-
-    public void setPlayer(nl.hu.cisq1.lingo.trainer.domain.game.Player player) {
-        Player = player;
+    public void setRounds(List<Round> rounds) {
+        this.rounds = rounds;
     }
 }

@@ -2,22 +2,39 @@ package nl.hu.cisq1.lingo.trainer.domain.round;
 
 import nl.hu.cisq1.lingo.trainer.domain.exception.HintSizeDoesNotMatchException;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import static nl.hu.cisq1.lingo.trainer.domain.round.LetterFeedback.INVALID;
+
+@Entity
 public class Feedback {
+    @Id
+    @GeneratedValue
+    private Long id;
+    private String attempt;
     private String wordToGuess;
+
+    @ElementCollection
     private List<LetterFeedback> letterFeedback;
+
+    public Feedback() {}
+
+    public Feedback(String attempt, String wordToGuess, List<LetterFeedback> letterFeedback) {
+        this.attempt = attempt;
+        this.wordToGuess = wordToGuess;
+        this.letterFeedback = letterFeedback;
+    }
 
     public Feedback(String wordToGuess, List<LetterFeedback> letterFeedback) {
         this.wordToGuess = wordToGuess;
         this.letterFeedback = letterFeedback;
     }
 
-    public Feedback(List<LetterFeedback> nCopies) {
-    }
+    public Feedback(List<LetterFeedback> nCopies) {}
 
     public List<LetterFeedback> getLetterFeedback() {
         return letterFeedback;
@@ -25,7 +42,7 @@ public class Feedback {
 
     public static Feedback generate(String wordToGuess, String attempt) {
         if (wordToGuess.length() != attempt.length()) {
-            return new Feedback(Collections.nCopies(wordToGuess.length(), LetterFeedback.INVALID));
+            return new Feedback(Collections.nCopies(wordToGuess.length(), INVALID));
         }
 
         List<String> lettersToGuess = Arrays.asList(wordToGuess.split(""));
