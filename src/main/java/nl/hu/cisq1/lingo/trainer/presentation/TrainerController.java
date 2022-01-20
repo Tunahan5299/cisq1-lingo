@@ -35,4 +35,9 @@ public class TrainerController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
     }
+
+    @PostMapping("/game/{id}/guess")
+    public Progress guess(@PathVariable Long id, String attempt) {
+        return this.service.guess(id, attempt);
+    }
 }

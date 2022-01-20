@@ -40,7 +40,7 @@ public class Game {
             throw new ActionNotAllowedException();
         }
 
-        Round round = new Round(wordToGuess);
+        Round round = new Round(wordToGuess.toUpperCase());
         this.rounds.add(round);
         this.status = IN_PROGRESS;
     }

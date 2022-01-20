@@ -8,6 +8,7 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import static nl.hu.cisq1.lingo.trainer.domain.round.LetterFeedback.CORRECT;
 import static nl.hu.cisq1.lingo.trainer.domain.round.LetterFeedback.INVALID;
 
 @Entity
@@ -54,7 +55,7 @@ public class Feedback {
 
             if (lettersToGuess.get(i).equals(attemptLetter)) {
                 lettersToGuess.set(i, " ");
-                marked.add(LetterFeedback.CORRECT);
+                marked.add(CORRECT);
             } else {
                 marked.add(null);
             }
@@ -63,7 +64,7 @@ public class Feedback {
         for (int i = 0; i < lettersToGuess.size(); i++) {
             String attemptLetter = attemptLetters.get(i);
 
-            if (marked.get(i) == LetterFeedback.CORRECT) {
+            if (marked.get(i) == CORRECT) {
                 continue;
             }
 
@@ -80,18 +81,16 @@ public class Feedback {
     }
 
     public List<String> giveHint(List<String> previousHint) {
-        if (previousHint.size() != letterFeedback.size()) {
+        if (previousHint.size() != getLetterFeedback().size()) {
             throw new HintSizeDoesNotMatchException();
         }
 
-        String[] letters = wordToGuess.split(" ");
+        String[] letters = wordToGuess.split("");
         List<String> hint = new ArrayList<>(previousHint);
 
-        for (int i = 0; i < letterFeedback.size(); i++) {
-            if (letterFeedback.get(i) == LetterFeedback.CORRECT) {
+        for (int i = 0; i < getLetterFeedback().size(); i++) {
+            if (getLetterFeedback().get(i) == CORRECT) {
                 hint.set(i, letters[i]);
-            } else {
-                hint.set(i, ".");
             }
         }
 
