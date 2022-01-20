@@ -1,6 +1,6 @@
-package nl.hu.cisq1.lingo.trainer.presentation.words;
+package nl.hu.cisq1.lingo.words.presentation;
 
-import nl.hu.cisq1.lingo.trainer.application.words.WordService;
+import nl.hu.cisq1.lingo.words.application.WordService;
 import nl.hu.cisq1.lingo.trainer.domain.exception.WordLengthNotSupportedException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -1,6 +1,6 @@
-package nl.hu.cisq1.lingo.trainer.application.words;
+package nl.hu.cisq1.lingo.words.application;
 
-import nl.hu.cisq1.lingo.trainer.data.words.SpringWordRepository;
+import nl.hu.cisq1.lingo.words.data.SpringWordRepository;
 import nl.hu.cisq1.lingo.trainer.domain.exception.WordLengthNotSupportedException;
 import org.springframework.stereotype.Service;
 

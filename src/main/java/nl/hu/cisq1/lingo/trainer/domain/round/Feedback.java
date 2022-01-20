@@ -15,13 +15,15 @@ public class Feedback {
     @Id
     @GeneratedValue
     private Long id;
+
     private String attempt;
     private String wordToGuess;
 
     @ElementCollection
     private List<LetterFeedback> letterFeedback;
 
-    public Feedback() {}
+    public Feedback() {
+    }
 
     public Feedback(String attempt, String wordToGuess, List<LetterFeedback> letterFeedback) {
         this.attempt = attempt;
@@ -34,10 +36,8 @@ public class Feedback {
         this.letterFeedback = letterFeedback;
     }
 
-    public Feedback(List<LetterFeedback> nCopies) {}
 
-    public List<LetterFeedback> getLetterFeedback() {
-        return letterFeedback;
+    public Feedback(List<LetterFeedback> nCopies) {
     }
 
     public static Feedback generate(String wordToGuess, String attempt) {
@@ -79,16 +79,16 @@ public class Feedback {
         return new Feedback(wordToGuess, marked);
     }
 
-    public List<String> giveHint(List<String> previousHint){
-        if(previousHint.size() != letterFeedback.size()) {
+    public List<String> giveHint(List<String> previousHint) {
+        if (previousHint.size() != letterFeedback.size()) {
             throw new HintSizeDoesNotMatchException();
         }
 
         String[] letters = wordToGuess.split(" ");
         List<String> hint = new ArrayList<>(previousHint);
 
-        for(int i = 0; i < letterFeedback.size(); i++){
-            if(letterFeedback.get(i) == LetterFeedback.CORRECT){
+        for (int i = 0; i < letterFeedback.size(); i++) {
+            if (letterFeedback.get(i) == LetterFeedback.CORRECT) {
                 hint.set(i, letters[i]);
             } else {
                 hint.set(i, ".");
@@ -98,4 +98,7 @@ public class Feedback {
         return hint;
     }
 
+    public List<LetterFeedback> getLetterFeedback() {
+        return letterFeedback;
+    }
 }

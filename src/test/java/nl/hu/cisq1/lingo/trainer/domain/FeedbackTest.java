@@ -1,4 +1,4 @@
-package nl.hu.cisq1.lingo.trainer;
+package nl.hu.cisq1.lingo.trainer.domain;
 
 import nl.hu.cisq1.lingo.trainer.domain.round.Feedback;
 import nl.hu.cisq1.lingo.trainer.domain.round.LetterFeedback;

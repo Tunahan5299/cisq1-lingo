@@ -12,42 +12,40 @@ public class Round {
     @Id
     @GeneratedValue
     private Long id;
-    private String wordToGuess;
 
-    public String getWordToGuess() {
-        return wordToGuess;
-    }
+    private String wordToGuess;
 
     @OneToMany(fetch = FetchType.EAGER)
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private final List<Feedback> feedbackHistory = new ArrayList<>();
 
-    public Round() {}
+    public Round() {
+    }
 
     public Round(String wordToGuess) {
         this.wordToGuess = wordToGuess;
     }
 
-    public static int getNextWordLength(int priorWordLength) {
-        if (priorWordLength == 5) {
+    public int getNextWordLength() {
+        int currentWordLength = this.wordToGuess.length();
+
+        if (currentWordLength == 5) {
             return 6;
         }
-        if (priorWordLength == 6) {
+
+        if (currentWordLength == 6) {
             return 7;
-        }
-        if (priorWordLength == 7) {
-            return 5;
         }
         return 5;
     }
 
-    public static List<String> getFirstLetter(String wordToGuess) {
+    private List<String> getFirstLetter() {
         List<String> hint = new ArrayList<>();
         String word = String.valueOf(wordToGuess);
         String[] letters = word.split("");
 
-        for(int i = 1; i < letters.length; i++){
-            if(i == 1){
+        for (int i = 1; i < letters.length; i++) {
+            if (i == 1) {
                 hint.add(letters[0]);
             }
             hint.add(".");
@@ -55,9 +53,27 @@ public class Round {
         return hint;
     }
 
-    @Override
-    public String toString() {
-        return "" + wordToGuess;
+    public List<String> getCurrentHint() {
+        List<String> hint = this.getFirstLetter();
+        if (this.feedbackHistory.size() == 0) {
+            return hint;
+        }
+        for (Feedback feedback : this.feedbackHistory) {
+            hint = feedback.giveHint(hint);
+        }
+        return hint;
     }
 
+    public void guess(String attempt) {
+        Feedback feedback = Feedback.generate(wordToGuess, attempt);
+        this.feedbackHistory.add(feedback);
+    }
+
+    public String getWordToGuess() {
+        return wordToGuess;
+    }
+
+    public List<Feedback> getFeedbackHistory() {
+        return feedbackHistory;
+    }
 }
