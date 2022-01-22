@@ -1,4 +1,4 @@
-package nl.hu.cisq1.lingo.trainer;
+package nl.hu.cisq1.lingo.words;
 
 import nl.hu.cisq1.lingo.CiTestConfiguration;
 import nl.hu.cisq1.lingo.words.application.WordService;

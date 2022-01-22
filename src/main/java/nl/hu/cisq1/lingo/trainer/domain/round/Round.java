@@ -8,7 +8,6 @@ import java.util.List;
 
 @Entity
 public class Round {
-    public static final int MAX_ATTEMPTS = 5;
     @Id
     @GeneratedValue
     private Long id;

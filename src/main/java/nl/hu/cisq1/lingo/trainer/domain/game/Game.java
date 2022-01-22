@@ -10,10 +10,7 @@ import java.util.List;
 
 import static nl.hu.cisq1.lingo.trainer.domain.game.GameState.*;
 
-// @TODO wat als het woord geraden is --> volgende ronde?
-// @TODO wat als het woord na 5x (MAX_ATTEMPTS) niet geraden is --> eliminated?
 // @TODO mag je altijd raden?
-// @TODO hoe houden we de score bij?
 // @TODO voldoende tests en CI, static analysis, security analysis
 // @TODO let op Engels; CTRL + ALT + L (reformat)
 
@@ -23,16 +20,28 @@ public class Game {
     @GeneratedValue
     private Long id;
 
-    private Integer score = 0;
+    public Integer score = 0;
+
+    public int attemptCounter;
 
     @Enumerated(EnumType.STRING)
-    private GameState status = WAITING_FOR_ROUND;
+    public GameState status = WAITING_FOR_ROUND;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany
     @Cascade(org.hibernate.annotations.CascadeType.ALL)
     private List<Round> rounds = new ArrayList<>();
 
     public Game() {
+    }
+
+    public Game(GameState IN_PROGRESS) {
+    }
+
+    public Game(Integer score, int attemptCounter, GameState status, List<Round> rounds) {
+        this.score = score;
+        this.attemptCounter = attemptCounter;
+        this.status = status;
+        this.rounds = rounds;
     }
 
     public void startRound(String wordToGuess) {
@@ -46,9 +55,9 @@ public class Game {
     }
 
     public Progress getProgress() {
-        Round currentRound = getCurrentRound();
         return new Progress(
                 id,
+                attemptCounter,
                 score,
                 status,
                 getCurrentRound().getCurrentHint(),

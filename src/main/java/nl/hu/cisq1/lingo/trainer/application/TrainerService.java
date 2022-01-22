@@ -7,6 +7,9 @@ import nl.hu.cisq1.lingo.trainer.domain.game.Game;
 import nl.hu.cisq1.lingo.trainer.domain.game.Progress;
 import org.springframework.stereotype.Service;
 
+import static nl.hu.cisq1.lingo.trainer.domain.game.GameState.ELIMINATED;
+import static nl.hu.cisq1.lingo.trainer.domain.game.GameState.WAITING_FOR_ROUND;
+
 @Service
 public class TrainerService {
     private final WordService wordService;
@@ -32,7 +35,22 @@ public class TrainerService {
         Game game = this.gameRepository.findById(gameId)
                 .orElseThrow(GameNotFoundException::new);
 
-        game.guess(attempt);
+        if (!game.getProgress().getCurrentHint().contains(".")) {
+            game.attemptCounter = 0;
+        }
+
+        game.attemptCounter++;
+
+        if (game.attemptCounter > 5) {
+            game.status = ELIMINATED;
+        } else {
+            if (!game.getProgress().getCurrentHint().contains(".")) {
+                game.status = WAITING_FOR_ROUND;
+                game.score = game.score + 100;
+            } else {
+                game.guess(attempt);
+            }
+        }
 
         this.gameRepository.save(game);
 
