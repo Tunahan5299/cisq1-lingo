@@ -10,10 +10,6 @@ import java.util.List;
 
 import static nl.hu.cisq1.lingo.trainer.domain.game.GameState.*;
 
-// @TODO mag je altijd raden?
-// @TODO voldoende tests en CI, static analysis, security analysis
-// @TODO let op Engels; CTRL + ALT + L (reformat)
-
 @Entity
 public class Game {
     @Id
@@ -83,6 +79,10 @@ public class Game {
 
     public List<Round> getRounds() {
         return rounds;
+    }
+
+    public int getAttemptCounter() {
+        return attemptCounter;
     }
 
     private Round getCurrentRound() {

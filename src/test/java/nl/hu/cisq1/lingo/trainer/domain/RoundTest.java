@@ -10,7 +10,6 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-
 @DisplayName("Round")
 public class RoundTest {
 
@@ -54,34 +53,34 @@ public class RoundTest {
     }
 
     @Test
-    @DisplayName("Get First hint")
-    void getFirstHintTest(){
-        String wordToGuess = "hallo";
+    @DisplayName("Get first letter")
+    void getFirstLetter(){
+        String wordToGuess = "KLOPT";
         Round round = new Round(wordToGuess);
         List<String> actual = round.getCurrentHint();
-        List<String> expected = List.of("h", ".", ".", ".", ".");
+        List<String> expected = List.of("K", ".", ".", ".", ".");
 
         assertEquals(expected, actual);
     }
 
     @Test
-    @DisplayName("Get current hint after guess")
-    void getCurrentHintTest(){
-        String wordToGuess = "hallo";
-        String attempt = "halla";
+    @DisplayName("Get current hint")
+    void getCurrentHint(){
+        String wordToGuess = "KLOPT";
+        String attempt = "KLOPD";
         Round round = new Round(wordToGuess);
         round.guess(attempt);
         List<String> actual = round.getCurrentHint();
-        List<String> expected = List.of("h", "a", "l", "l", ".");
+        List<String> expected = List.of("K", "L", "O", "P", ".");
 
         assertEquals(expected, actual);
     }
 
     @Test
-    @DisplayName("Get feedbackhistory")
+    @DisplayName("Get feedback history")
     void getFeedbackHistory(){
-        String wordToGuess = "hallo";
-        String attempt = "halla";
+        String wordToGuess = "KLOPT";
+        String attempt = "KLOPD";
         Round round = new Round(wordToGuess);
         round.guess(attempt);
         List<Feedback> actual = round.getFeedbackHistory();
