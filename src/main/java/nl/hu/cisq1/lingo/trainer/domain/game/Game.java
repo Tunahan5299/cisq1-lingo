@@ -81,9 +81,6 @@ public class Game {
         return rounds;
     }
 
-    public int getAttemptCounter() {
-        return attemptCounter;
-    }
 
     private Round getCurrentRound() {
         return this.rounds.get(this.rounds.size() - 1);

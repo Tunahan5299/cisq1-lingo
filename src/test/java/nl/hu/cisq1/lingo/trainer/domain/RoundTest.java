@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("Round")
-public class RoundTest {
+class RoundTest {
 
     @Test
     @DisplayName("Next word is 5 letters")
@@ -54,7 +54,7 @@ public class RoundTest {
 
     @Test
     @DisplayName("Get first letter")
-    void getFirstLetter(){
+    void getFirstLetter() {
         String wordToGuess = "KLOPT";
         Round round = new Round(wordToGuess);
         List<String> actual = round.getCurrentHint();
@@ -65,7 +65,7 @@ public class RoundTest {
 
     @Test
     @DisplayName("Get current hint")
-    void getCurrentHint(){
+    void getCurrentHint() {
         String wordToGuess = "KLOPT";
         String attempt = "KLOPD";
         Round round = new Round(wordToGuess);
@@ -78,7 +78,7 @@ public class RoundTest {
 
     @Test
     @DisplayName("Get feedback history")
-    void getFeedbackHistory(){
+    void getFeedbackHistory() {
         String wordToGuess = "KLOPT";
         String attempt = "KLOPD";
         Round round = new Round(wordToGuess);

@@ -21,14 +21,14 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 @DisplayName("TrainerService")
-public class TrainerServiceTest {
+class TrainerServiceTest {
 
     private static TrainerService trainerService;
     private static GameRepository gameRepository;
     private static WordService wordService;
 
     @BeforeAll
-    static void beforeAll(){
+    static void beforeAll() {
         gameRepository = mock(GameRepository.class);
         wordService = mock(WordService.class);
         trainerService = new TrainerService(wordService, gameRepository);
@@ -36,7 +36,7 @@ public class TrainerServiceTest {
 
     @Test
     @DisplayName("Start game")
-    void startGame(){
+    void startGame() {
         when(wordService.provideRandomWord(5)).thenReturn(String.valueOf(new Word("KLOPT")));
         Progress progress = trainerService.startGame();
 
@@ -45,7 +45,7 @@ public class TrainerServiceTest {
 
     @Test
     @DisplayName("Create a new round")
-    void createNewRound(){
+    void createNewRound() {
         Round round = new Round("KLOPT");
         List<Round> rounds = new ArrayList<>();
         rounds.add(round);
@@ -62,7 +62,7 @@ public class TrainerServiceTest {
 
     @Test
     @DisplayName("Guess attempt")
-    void guess(){
+    void guess() {
         Round round = new Round("KLOPT");
         List<Round> rounds = new ArrayList<>();
         rounds.add(round);

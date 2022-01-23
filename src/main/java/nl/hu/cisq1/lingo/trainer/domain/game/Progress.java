@@ -33,7 +33,9 @@ public class Progress {
         return status;
     }
 
-    public int getAttemptCounter() {return attemptCounter;}
+    public int getAttemptCounter() {
+        return attemptCounter;
+    }
 
     public List<Feedback> getFeedbackHistory() {
         return feedbackHistory;

@@ -3,19 +3,15 @@ package nl.hu.cisq1.lingo.trainer.domain;
 import nl.hu.cisq1.lingo.trainer.domain.exception.ActionNotAllowedException;
 import nl.hu.cisq1.lingo.trainer.domain.game.Game;
 import nl.hu.cisq1.lingo.trainer.domain.game.GameState;
-import nl.hu.cisq1.lingo.trainer.domain.round.Round;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.catchThrowable;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("Game")
-public class GameTest {
+class GameTest {
 
     @Test
     @DisplayName("Start new round")
@@ -28,7 +24,6 @@ public class GameTest {
         GameState expected = GameState.IN_PROGRESS;
         assertEquals(expected, actual);
     }
-
 
 
     @Test

@@ -13,7 +13,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @DisplayName("Progress")
-public class ProgressTest {
+class ProgressTest {
 
     @Test
     @DisplayName("Get progress from game")

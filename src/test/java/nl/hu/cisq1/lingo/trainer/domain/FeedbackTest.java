@@ -1,6 +1,5 @@
 package nl.hu.cisq1.lingo.trainer.domain;
 
-import nl.hu.cisq1.lingo.trainer.domain.exception.ActionNotAllowedException;
 import nl.hu.cisq1.lingo.trainer.domain.exception.HintSizeDoesNotMatchException;
 import nl.hu.cisq1.lingo.trainer.domain.round.Feedback;
 import nl.hu.cisq1.lingo.trainer.domain.round.LetterFeedback;
@@ -69,7 +68,7 @@ public class FeedbackTest {
 
     @Test
     @DisplayName("Word is guessed correctly")
-    void wordIsCorrect(){
+    void wordIsCorrect() {
         String wordToGuess = "KLOPT";
         String attempt = "KLOPT";
 
@@ -82,7 +81,7 @@ public class FeedbackTest {
 
     @Test
     @DisplayName("Word is too long")
-    void wordIsTooLong(){
+    void wordIsTooLong() {
         String wordToGuess = "KLOPT";
         String attempt = "KLOPPEN";
 

@@ -23,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(TrainerController.class)
 @AutoConfigureMockMvc
 @DisplayName("TrainerController")
-public class TrainerControllerTest {
+class TrainerControllerTest {
 
     @Autowired
     private MockMvc mockMvc;

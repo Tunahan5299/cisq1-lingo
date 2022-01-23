@@ -17,7 +17,6 @@ public class Feedback {
     @GeneratedValue
     private Long id;
 
-    private String attempt;
     private String wordToGuess;
 
     @ElementCollection
@@ -26,17 +25,10 @@ public class Feedback {
     public Feedback() {
     }
 
-    public Feedback(String attempt, String wordToGuess, List<LetterFeedback> letterFeedback) {
-        this.attempt = attempt;
-        this.wordToGuess = wordToGuess;
-        this.letterFeedback = letterFeedback;
-    }
-
     public Feedback(String wordToGuess, List<LetterFeedback> letterFeedback) {
         this.wordToGuess = wordToGuess;
         this.letterFeedback = letterFeedback;
     }
-
 
     public Feedback(List<LetterFeedback> nCopies) {
     }
